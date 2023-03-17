@@ -4,10 +4,15 @@
 $normal_text = $_GET['paragraph'];
 // var_dump($_GET);
 
+$normal_lenght = strlen($normal_text);
+// var_dump($_GET);
+
 $bad_word = $_GET['badword'];
 // var_dump($_GET);
 
-$censored_text = str_replace($bad_word,'****',$normal_text)
+$censored_text = str_replace($bad_word,'****',$normal_text);
+
+$censored_length = strlen($censored_text);
 ?>
 
 <!-- HTML -->
@@ -19,7 +24,10 @@ $censored_text = str_replace($bad_word,'****',$normal_text)
     <div class="container row">
         <div class="row-item">
             <p class="title">normal text:</p>
-            <p class="printed-normal row-item"><?php echo $normal_text ?></p>
+            <div class="items">
+                <p class="printed-normal row-item"><?php echo $normal_text ?></p>
+                <p class="pararaph-length"><?php echo $normal_lenght?></p>
+            </div>
         </div>
 
         <div class="row-item">
@@ -29,7 +37,10 @@ $censored_text = str_replace($bad_word,'****',$normal_text)
 
         <div class="row-item">
             <p class="title">censored text:</p>
-            <p class="printed-censor row-item"><?php echo $censored_text ?></p>
+            <div class="items">
+                <p class="printed-censor row-item"><?php echo $censored_text ?></p>
+                <p class="pararaph-length"><?php echo $censored_length?></p>
+            </div>
         </div>
     </div>
 </section>
@@ -79,6 +90,13 @@ $censored_text = str_replace($bad_word,'****',$normal_text)
     gap: 1rem;
 }
 
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
 .title {
     text-transform: uppercase;
     color: rgb(75, 178, 129);
@@ -86,19 +104,26 @@ $censored_text = str_replace($bad_word,'****',$normal_text)
 }
 
 .printed-normal {
-    color: red;
     padding: 0.5rem;
     border: 1px solid rgba(50, 50, 255, 1);
     background-color: rgba(50, 50, 255, 0.5);
     color: white;
+    flex-grow: 1;
+}
+
+.pararaph-length {
+    padding: 0.5rem;
+    color: white;
+    border: 1px solid rgba(50, 50, 255, 1);
+    background-color: rgba(50, 50, 255, 0.5);
 }
 
 .printed-censor {
-    color: blue;
     padding: 0.5rem;
     border: 1px solid rgba(50, 50, 255, 1);
     background-color: rgba(50, 50, 255, 0.5);
     color: white;
+    flex-grow: 1;
 }
 
 .censor {
